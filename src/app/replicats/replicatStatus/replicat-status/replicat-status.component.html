@@ -1,0 +1,61 @@
+<br>
+<h2>Status de la Replica</h2>
+<p>
+<strong> Request </strong>
+Retrieve Status
+</p>
+
+<p><strong>Parametros</strong></p>
+<p> <u>Replicat Name</u> :  Identificador de la Replica</p>
+
+<form>
+  <div class="form">
+      <div>
+          <label style="margin-right: 5px;"> <strong>Replicat Name  </strong>  </label>
+          <input
+            type="text"
+            placeholder="String "
+            name="UBI_ENTREGA"
+            [(ngModel)]="datos.parametro"
+            maxlength="200"
+            style="width: 250px;"
+          />
+        </div>
+   
+       
+     
+  <br />
+ 
+  <br>
+  <!-- <textarea name="" id="" cols="175" rows="5" readonly></textarea> -->
+  </div>
+
+</form>
+
+<div class="update-data-botones" style="display: flex; flex-direction:row;  margin-left: 4px;">
+  <div
+    class="update-data-button-container ml-3"
+    style="width: 150px"
+  >
+    <button
+      class="btn btn-primary align-self-center"
+      style="width: 200px"
+      
+      
+      >
+     <!--(click)="this.SolveData()" -->
+     
+      Mandar Peticion
+     
+    </button>
+  <div
+    class="button-container align-self-center mr-3"
+    style="width: 250px"
+  >
+
+  </div>
+</div>
+</div>
+<h2>Respuesta</h2>
+<textarea name="response" id="" cols="175" rows="10" ></textarea>
+<!-- [(ngModel)]="this.data2" -->

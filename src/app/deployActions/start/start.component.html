@@ -1,0 +1,63 @@
+
+<br>
+<h2>Iniciar Deployment</h2>
+<p>
+<strong> Request </strong>
+StartDeployment
+</p>
+<p><strong>Parametros</strong></p>
+<p> <u>deploymentId</u> :  Identificador de implementación único.</p>
+
+<form>
+    <div class="form">
+        <div>
+            <label style="margin-right: 5px;"> <strong>deploymentId  </strong>  </label>
+            <input
+              type="text"
+              placeholder="String "
+              name="UBI_ENTREGA"
+              [(ngModel)]="deployment.deploymentId"
+              maxlength="200"
+              style="width: 700px;"
+            />
+          </div>
+          <!-- <div>
+            <label>APELLIDO </label>
+            <input
+              type="text"
+              placeholder="String "
+              name="UBI_DEVOLUCION"
+              [(ngModel)]="solicitudes.apellido"
+              maxlength="45"
+            />
+          </div> -->
+         
+       
+    <br />
+    <div class="update-data-botones">
+      <div
+        class="update-data-button-container ml-3"
+        style="width: 150px"
+      >
+        <button
+          class="btn btn-primary align-self-center"
+          style="width: 150px"
+          (click)="agregar()"
+          
+        >
+          Mandar Peticion
+         
+        </button>
+      <div
+        class="button-container align-self-center mr-3"
+        style="width: 250px"
+      >
+   
+      </div>
+    </div>
+    </div>
+    <br>
+    <!-- <textarea name="" id="" cols="175" rows="5" readonly></textarea> -->
+    </div>
+
+  </form>

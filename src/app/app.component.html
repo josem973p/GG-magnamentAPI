@@ -1,0 +1,678 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="http://code.jquery.com/jquery-1.11.min.js"></script>
+  <link
+    href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css?family=Muli:300,700&display=swap"
+    rel="stylesheet"
+  />
+</head>
+
+
+<div class="sidebar">
+  <div class="logo" style="margin: auto">
+    <h2
+      class="text-light mb-0 p-3 ml-2"
+      style="font-weight: bold"
+      (click)="this.mainPage()"
+    >
+      <img src="../assets/imagenes/logo.png" (click)="this.mainPage()"  style="width:210px; height:70px"/>
+    </h2>
+    <hr
+      style="
+        width: 90%;
+        margin: 0 auto;
+        border: 1px solid #164f91;
+        height: 1px;
+        color: rgb(0, 0, 0) !important; ;
+      "
+    />
+  </div>
+ 
+
+  <div class="menu">
+    <h3 class="d-block text-light p-1 border-0 mb-1" style="font-size:20px!important;">
+      <i
+        class="icon ion-md-clipboard"
+        style="
+          width: 15px;
+          height: 22px;
+          display: inline-block;
+          margin-bottom: 5px;
+          margin-left: 20px;
+        "
+      ></i>
+
+      Deployment
+    </h3>
+    <ul>
+  
+      <li class="ml-5 mb-1"
+      (click)="
+         
+          this.abrir();
+          this.start= true;
+          this.stop= false;
+          this.listExtracts=false;
+          this.listReports=false;
+          this.retrieveExtract = false;
+          this.extractStatus=false;
+          this.listReplicats=false;
+          this.replicatListsReports=false;
+          this.retrieveReplicat=false;
+          this.replicatStatus=false;
+          this.logs=false;
+          this.messages=false;
+          "
+          style="font-size:15px; font-family: 'Poppins-Regular';"
+        
+      >
+      <i
+      class="icon ion-md-options"
+      style="
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      margin-bottom: 5px;
+      margin-left: 50px;
+    "
+      ></i>
+
+      <i style="font-weight: 0;"> Start Deployment</i>
+      </li>
+      <li class="ml-5 mb-1"
+      (click)="
+         
+          this.abrir();
+          this.start= false;
+          this.stop= true;
+          this.listExtracts=false;
+          this.listReports=false;
+          this.retrieveExtract = false;
+          this.extractStatus=false;
+          this.listReplicats=false;
+          this.replicatListsReports=false;
+          this.retrieveReplicat=false;
+          this.replicatStatus=false;
+          this.logs=false;
+          this.messages=false;
+
+         
+         
+        "
+        style="font-size:16px; font-family: 'Poppins-Regular'!important;"
+      >
+      <i
+      class="icon ion-md-checkmark"
+      style="
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      margin-bottom: 5px;
+      margin-left: 50px;
+    "
+      ></i>
+      <i style="font-weight: 0;">Stop Deployment</i>
+        
+      </li>
+    </ul>
+    <h3 class="d-block text-light p-2 border-0" style="font-size:20px!important;">
+      <i
+        class="icon ion-md-clipboard"
+        style="
+          width: 15px;
+          height: 22px;
+          display: inline-block;
+          margin-bottom: 5px;
+          margin-left: 20px;
+        "
+      ></i>
+
+      Extracts
+    </h3>
+    <ul>
+  
+      <li class="ml-5 mb-1"
+      (click)="
+         
+          this.abrir();
+          this.start= false;
+          this.stop= false;
+          this.listExtracts=true;
+          this.listReports=false;
+          this.retrieveExtract = false;
+          this.extractStatus=false;
+          this.listReplicats=false;
+          this.replicatListsReports=false;
+          this.retrieveReplicat=false;
+          this.replicatStatus=false;
+          this.logs=false;
+          this.messages=false;
+          "
+          style="font-size:15px; font-family: 'Poppins-Regular';"
+        
+      >
+      <i
+      class="icon ion-md-options"
+      style="
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      margin-bottom: 5px;
+      margin-left: 50px;
+    "
+      ></i>
+
+      <i style="font-weight: 0;"> Listar Extractos</i>
+      </li>
+      <li class="ml-5 mb-1"
+      (click)="
+         
+      this.abrir();
+      this.start= false;
+      this.stop= false;
+      this.listExtracts=false;
+      this.listReports=true;
+      this.retrieveExtract = false;
+      this.extractStatus=false;
+      this.listReplicats=false;
+      this.replicatListsReports=false;
+      this.retrieveReplicat=false;
+      this.replicatStatus=false;
+      this.logs=false;
+      this.messages=false;
+         
+         
+        "
+        style="font-size:16px; font-family: 'Poppins-Regular'!important;"
+      >
+      <i
+      class="icon ion-md-checkmark"
+      style="
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      margin-bottom: 5px;
+      margin-left: 50px;
+    "
+      ></i>
+      <i style="font-weight: 0;">Listar Reportes</i>
+        
+      </li>
+      <li class="ml-5 mb-1"
+      (click)="
+         
+          this.abrir();
+          this.start= false;
+          this.stop= false;
+          this.listExtracts=false;
+          this.listReports=false;
+          this.retrieveExtract = true;
+          this.extractStatus=false;
+          this.listReplicats=false;
+          this.replicatListsReports=false;
+          this.retrieveReplicat=false;
+          this.replicatStatus=false;
+          this.logs=false;
+          this.messages=false;
+         
+         
+        "
+        style="font-size:16px; font-family: 'Poppins-Regular'!important;"
+      >
+      <i
+      class="icon ion-md-checkmark"
+      style="
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      margin-bottom: 5px;
+      margin-left: 50px;
+    "
+      ></i>
+      <i style="font-weight: 0;">Detalles del extracto</i>
+        
+      </li>
+      <li class="ml-5 mb-1"
+      (click)="
+         
+      this.abrir();
+      this.start= false;
+      this.stop= false;
+      this.listExtracts=false;
+      this.listReports=false;
+      this.retrieveExtract = false;
+      this.extractStatus=true;
+      this.listReplicats=false;
+      this.replicatListsReports=false;
+      this.retrieveReplicat=false;
+      this.replicatStatus=false;
+      this.logs=false;
+      this.messages=false;
+         
+         
+        "
+        style="font-size:16px; font-family: 'Poppins-Regular'!important;"
+      >
+      <i
+      class="icon ion-md-checkmark"
+      style="
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      margin-bottom: 5px;
+      margin-left: 50px;
+    "
+      ></i>
+      <i style="font-weight: 0;">Status del extracto</i>
+        
+      </li>
+    </ul>
+   
+
+    <h3 class="d-block text-light p-2 border-0" style="font-size:20px!important;">
+      <i
+        class="icon ion-md-clipboard"
+        style="
+          width: 15px;
+          height: 22px;
+          display: inline-block;
+          margin-bottom: 5px;
+          margin-left: 20px;
+        "
+      ></i>
+
+      Replicats
+    </h3>
+    <ul>
+  
+      <li class="ml-5 mb-1"
+      (click)="
+         
+          this.abrir();
+          this.start= false;
+      this.stop= false;
+      this.listExtracts=false;
+      this.listReports=false;
+      this.retrieveExtract = false;
+      this.extractStatus=false;
+      this.listReplicats=true;
+      this.replicatListsReports=false;
+      this.retrieveReplicat=false;
+      this.replicatStatus=false;
+      this.logs=false;
+      this.messages=false;
+
+          "
+          style="font-size:15px; font-family: 'Poppins-Regular';"
+        
+      >
+      <i
+      class="icon ion-md-options"
+      style="
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      margin-bottom: 5px;
+      margin-left: 50px;
+    "
+      ></i>
+
+      <i style="font-weight: 0;"> Listar Replicas</i>
+      </li>
+      <li class="ml-5 mb-1"
+      (click)="
+         
+          this.abrir();
+          this.start= false;
+          this.stop= false;
+          this.listExtracts=false;
+          this.listReports=false;
+          this.retrieveExtract = false;
+          this.extractStatus=false;
+          this.listReplicats=false;
+          this.replicatListsReports=true;
+          this.retrieveReplicat=false;
+          this.replicatStatus=false;  
+          this.logs=false; 
+          this.messages=false;
+         
+        "
+        style="font-size:16px; font-family: 'Poppins-Regular'!important;"
+      >
+      <i
+      class="icon ion-md-checkmark"
+      style="
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      margin-bottom: 5px;
+      margin-left: 50px;
+    "
+      ></i>
+      <i style="font-weight: 0;">Listar Reportes</i>
+        
+      </li>
+      <li class="ml-5 mb-1"
+      (click)="
+         
+          this.abrir();
+          this.start= false;
+          this.stop= false;
+          this.listExtracts=false;
+          this.listReports=false;
+          this.retrieveExtract = false;
+          this.extractStatus=false;
+          this.listReplicats=false;
+          this.replicatListsReports=false;
+          this.retrieveReplicat=true;
+          this.replicatStatus=false;
+          this.logs=false;
+          this.messages=false;
+         
+         
+        "
+        style="font-size:16px; font-family: 'Poppins-Regular'!important;"
+      >
+      <i
+      class="icon ion-md-checkmark"
+      style="
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      margin-bottom: 5px;
+      margin-left: 50px;
+    "
+      ></i>
+      <i style="font-weight: 0;">Detalles de la replica</i>
+        
+      </li>
+      <li class="ml-5 mb-1"
+      (click)="
+         
+          this.abrir();
+          this.start= false;
+          this.stop= false;
+          this.listExtracts=false;
+          this.listReports=false;
+          this.retrieveExtract = false;
+          this.extractStatus=false;
+          this.listReplicats=false;
+          this.replicatListsReports=false;
+          this.retrieveReplicat=false;
+          this.replicatStatus=true;
+          this.logs=false;
+          this.messages=false;
+         
+         
+        "
+        style="font-size:16px; font-family: 'Poppins-Regular'!important;"
+      >
+      <i
+      class="icon ion-md-checkmark"
+      style="
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      margin-bottom: 5px;
+      margin-left: 50px;
+    "
+      ></i>
+      <i style="font-weight: 0;">Status de la replica</i>
+        
+      </li>
+    </ul>
+
+    <h3 class="d-block text-light p-1 border-0 mb-1" style="font-size:20px!important;">
+      <i
+        class="icon ion-md-clipboard"
+        style="
+          width: 15px;
+          height: 22px;
+          display: inline-block;
+          margin-bottom: 5px;
+          margin-left: 20px;
+        "
+      ></i>
+
+      Reportes
+    </h3>
+    <ul>
+  
+      <li class="ml-5 mb-1"
+      (click)="
+         
+          this.abrir();
+          this.start= false;
+          this.stop= false;
+          this.listExtracts=false;
+          this.listReports=false;
+          this.retrieveExtract = false;
+          this.extractStatus=false;
+          this.listReplicats=false;
+          this.replicatListsReports=false;
+          this.retrieveReplicat=false;
+          this.replicatStatus=false;
+          this.logs=true;
+          this.messages=false;
+          "
+          style="font-size:15px; font-family: 'Poppins-Regular';"
+        
+      >
+      <i
+      class="icon ion-md-options"
+      style="
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      margin-bottom: 5px;
+      margin-left: 50px;
+    "
+      ></i>
+
+      <i style="font-weight: 0;">  Goldengate Logs</i>
+      </li>
+      <li class="ml-5 mb-1"
+      (click)="
+         
+          this.abrir();
+          this.start= false;
+          this.stop= false;
+          this.listExtracts=false;
+          this.listReports=false;
+          this.retrieveExtract = false;
+          this.extractStatus=false;
+          this.listReplicats=false;
+          this.replicatListsReports=false;
+          this.retrieveReplicat=false;
+          this.replicatStatus=false;
+          this.logs=false;
+          this.messages=true;
+         
+         
+        "
+        style="font-size:16px; font-family: 'Poppins-Regular'!important;"
+      >
+      <i
+      class="icon ion-md-checkmark"
+      style="
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      margin-bottom: 5px;
+      margin-left: 50px;
+    "
+      ></i>
+      <i style="font-weight: 0;">Goldengate Messages</i>
+        
+      </li>
+    </ul>
+   
+  </div>
+</div>
+<div class="nav-bar sticky-top" style="display: flex ; justify-content:space-between">
+  <button
+    type="button"
+    style="
+      font-weight: bold;
+      border: 0;
+      background-color: transparent;
+      color: #333232;
+    "
+    (click)="abrir()"
+  >
+
+    <img
+      src="../assets/imagenes/menu2.png"
+      alt=""
+      class="menu-bar"
+      style="width: 50px; height: 50px"
+    />Menú
+  </button>
+
+ 
+
+ 
+</div>
+
+<div class="main-container">
+  <div class="info-main" *ngIf="this.infoMain">
+    <section class="py-3" style="background-color: #ececec">
+      <div class="container" style="margin: 0">
+        <div class="row">
+          <div class="col-lg-9 col-md-8">
+            <br />
+            <br />
+            <h3
+              class="font-weight-bold ml-5 welcome"
+              style="color: #007bff; margin-left: 20px"
+            >
+              GOLDENGATE API
+            </h3>
+            <h2 class="lead text-muted ml-5" style="margin-left: 25px">
+              Establece los datos de inicio de sesion
+            </h2>
+            <div>
+              <form style="margin-top:10px">
+                <div class="form" style="display: flex; flex-direction:row; height: 27px!important; margin-left: 20px;">
+                    <div style="display: flex; flex-direction:row">
+                        <label style="margin-right: 5px;"> <strong>URL</strong>&nbsp;&nbsp;&nbsp; </label>
+                        <input
+                          type="text"
+                          placeholder="URL "
+                          name="URL"
+                          [(ngModel)]="datos.url"
+                          maxlength="200"
+                          style="width: 250px;"
+                        />
+                      </div>
+                      <div style="display: flex; flex-direction:row;  margin-left: 20px;">
+                        <label style="margin-right: 5px;"> <strong>USER  </strong> &nbsp;&nbsp;&nbsp; </label>
+                        <input
+                          type="text"
+                          placeholder="USER "
+                          name="USER"
+                          [(ngModel)]="datos.user"
+                          maxlength="200"
+                          style="width: 250px;"
+                        />
+                      </div>
+                      <div style="display: flex; flex-direction:row;  margin-left: 20px;">
+                        <label style="margin-right: 5px;"> <strong>PASSWORD  </strong> &nbsp;&nbsp;&nbsp; </label>
+                        <input
+                          type="text"
+                          placeholder="PASSWORD "
+                          name="PASSWORD"
+                          [(ngModel)]="datos.password"
+                          maxlength="200"
+                          style="width: 250px;"
+                        />
+                      </div>
+                     
+                     
+                   
+                <br />
+                <div class="update-data-botones" style="display: flex; flex-direction:row;  margin-left: 50px;">
+                  <div
+                    class="update-data-button-container ml-3"
+                    style="width: 150px"
+                  >
+                    <button
+                      class="btn btn-primary align-self-center"
+                      style="width: 200px"
+                      (click)="this.agregar()"
+                      >
+                     
+                      Establecer Datos
+                     
+                    </button>
+                  <div
+                    class="button-container align-self-center mr-3"
+                    style="width: 250px"
+                  >
+               
+                  </div>
+                </div>
+                </div>
+                <br>
+                <!-- <textarea name="" id="" cols="175" rows="5" readonly></textarea> -->
+                </div>
+            
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      
+    </section>
+    <div style="display:flex; justify-content:start;  boder-radius:5px; margin-left: 20px;">
+      
+      
+      <div  *ngIf="start"  >
+        <app-start></app-start>
+      </div>
+      <div  *ngIf="stop"  >
+        <app-stop></app-stop>
+      </div>
+      <div  *ngIf="listExtracts"  >
+        <app-list-extracts></app-list-extracts>
+      </div>
+      <div  *ngIf="listReports"  >
+        <app-list-reports></app-list-reports>
+      </div>
+      <div  *ngIf="retrieveExtract"  >
+        <app-retrieve-extract></app-retrieve-extract>
+      </div>
+      <div  *ngIf="extractStatus"  >
+        <app-extract-status></app-extract-status>
+      </div>
+      <div  *ngIf="listReplicats"  >
+        <app-list-replicats></app-list-replicats>
+      </div>
+      <div  *ngIf="replicatListsReports"  >
+        <app-replicat-list-reports></app-replicat-list-reports>
+      </div>
+      <div  *ngIf="retrieveReplicat"  >
+        <app-retrieve-replicat></app-retrieve-replicat>
+      </div>
+      <div  *ngIf="replicatStatus"  >
+        <app-replicat-status></app-replicat-status>
+      </div>
+      <div  *ngIf="logs"  >
+        <app-logs></app-logs>
+      </div>
+      <div  *ngIf="messages"  >
+        <app-messages></app-messages>
+      </div>
+      
+    </div>
+
+  </div>
+</div>
