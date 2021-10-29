@@ -20,9 +20,48 @@ export class ListReportsComponent implements OnInit {
     parametro:''
   };
 
+ 
+  agregar() {
+    this.addserver();
+    
+  }
+  url = `http://127.0.0.1:8080`;
+  settings: any;
+  addserver = async () => {
+    try {
+      const { hostname: location } = window.location;
+      this.url = `${this.url}/credentials/param`;
+      this.settings = {
+        method: 'POST',
+        body: JSON.stringify(this.datos),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }
+      };
+
+      const response = await fetch(this.url, this.settings);
+      if (response.ok) {
+        
+
+        Swal.fire('Datos enviados!', 'Se registraron los datos de inicio de sesion', 'success');
+      }
+    } catch (error) {
+      Swal.fire(
+        'Error',
+        'Hubo un error al enviar por favor revisa que la informacion sea correcta o intentalo mas tarde.',
+        'error'
+      );
+    }
+
+    this.url = `http://127.0.0.1:8080`;
+  };
+
+
+
   data2: any;
   objeto2:any;
-  url = `http://127.0.0.1:8080/extract/ListReport`;
+ 
   getData(ruta2: string) {
     
     return new Promise((resolve, reject) => {

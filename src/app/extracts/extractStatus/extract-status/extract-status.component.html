@@ -40,8 +40,9 @@ Retrieve Status
     <button
       class="btn btn-primary align-self-center"
       style="width: 200px"
-      
-      
+      (click)="this.agregar()"
+      (click)="this.SolveData()"
+    
       >
      <!--(click)="this.SolveData()" -->
      
@@ -57,5 +58,5 @@ Retrieve Status
 </div>
 </div>
 <h2>Respuesta</h2>
-<textarea name="response" id="" cols="175" rows="10" ></textarea>
+<textarea name="response" id="" cols="175" rows="10" [(ngModel)]="this.data2"></textarea>
 <!-- [(ngModel)]="this.data2" -->
