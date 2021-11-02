@@ -69,6 +69,7 @@
           this.replicatStatus=false;
           this.logs=false;
           this.messages=false;
+          this.task=false;
           "
           style="font-size:15px; font-family: 'Poppins-Regular';"
         
@@ -102,9 +103,8 @@
           this.replicatStatus=false;
           this.logs=false;
           this.messages=false;
+          this.task=false;
 
-         
-         
         "
         style="font-size:16px; font-family: 'Poppins-Regular'!important;"
       >
@@ -154,6 +154,7 @@
           this.replicatStatus=false;
           this.logs=false;
           this.messages=false;
+          this.task=false;
           "
           style="font-size:15px; font-family: 'Poppins-Regular';"
         
@@ -187,6 +188,7 @@
       this.replicatStatus=false;
       this.logs=false;
       this.messages=false;
+      this.task=false;
          
          
         "
@@ -221,6 +223,7 @@
           this.replicatStatus=false;
           this.logs=false;
           this.messages=false;
+          this.task=false;
          
          
         "
@@ -255,6 +258,7 @@
       this.replicatStatus=false;
       this.logs=false;
       this.messages=false;
+      this.task=false;
          
          
         "
@@ -308,6 +312,7 @@
       this.replicatStatus=false;
       this.logs=false;
       this.messages=false;
+      this.task=false;
 
           "
           style="font-size:15px; font-family: 'Poppins-Regular';"
@@ -342,6 +347,7 @@
           this.replicatStatus=false;  
           this.logs=false; 
           this.messages=false;
+          this.task=false;
          
         "
         style="font-size:16px; font-family: 'Poppins-Regular'!important;"
@@ -375,6 +381,7 @@
           this.replicatStatus=false;
           this.logs=false;
           this.messages=false;
+          this.task=false;
          
          
         "
@@ -409,6 +416,7 @@
           this.replicatStatus=true;
           this.logs=false;
           this.messages=false;
+          this.task=false;
          
          
         "
@@ -461,6 +469,7 @@
           this.replicatStatus=false;
           this.logs=true;
           this.messages=false;
+          this.task=false;
           "
           style="font-size:15px; font-family: 'Poppins-Regular';"
         
@@ -494,6 +503,7 @@
           this.replicatStatus=false;
           this.logs=false;
           this.messages=true;
+          this.task=false;
          
          
         "
@@ -510,6 +520,42 @@
     "
       ></i>
       <i style="font-weight: 0;">Goldengate Messages</i>
+        
+      </li>
+      <li class="ml-5 mb-1"
+      (click)="
+         
+          this.abrir();
+          this.start= false;
+          this.stop= false;
+          this.listExtracts=false;
+          this.listReports=false;
+          this.retrieveExtract = false;
+          this.extractStatus=false;
+          this.listReplicats=false;
+          this.replicatListsReports=false;
+          this.retrieveReplicat=false;
+          this.replicatStatus=false;
+          this.logs=false;
+          this.messages=false;
+          this.task=false;
+          this.task=true;
+         
+         
+        "
+        style="font-size:16px; font-family: 'Poppins-Regular'!important;"
+      >
+      <i
+      class="icon ion-md-checkmark"
+      style="
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      margin-bottom: 5px;
+      margin-left: 50px;
+    "
+      ></i>
+      <i style="font-weight: 0;">Task manager</i>
         
       </li>
     </ul>
@@ -670,6 +716,9 @@
       </div>
       <div  *ngIf="messages"  >
         <app-messages></app-messages>
+      </div>
+      <div  *ngIf="task"  >
+        <app-task-manager></app-task-manager>
       </div>
       
     </div>

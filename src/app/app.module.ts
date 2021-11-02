@@ -16,6 +16,7 @@ import { RetrieveReplicatComponent } from './replicats/retrieveReplicat/retrieve
 import { ReplicatStatusComponent } from './replicats/replicatStatus/replicat-status/replicat-status.component';
 import { LogsComponent } from './reports/logs/logs/logs.component';
 import { MessagesComponent } from './reports/messages/messages/messages.component';
+import { TaskManagerComponent } from './reports/taskManager/task-manager/task-manager.component';
 
 
 
@@ -34,7 +35,8 @@ import { MessagesComponent } from './reports/messages/messages/messages.componen
     RetrieveReplicatComponent,
     ReplicatStatusComponent,
     LogsComponent,
-    MessagesComponent
+    MessagesComponent,
+    TaskManagerComponent
     
    
   ],
