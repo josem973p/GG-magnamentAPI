@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProcessInterface } from 'src/app/interfaces/processInterface';
+
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,15 +15,21 @@ export class ListExtractsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+
   datos = {
     url: '',
     user:'',
     password:''
   };
 
-  data2: any;
-  objeto2:any;
+
+  data2:any ;
+  objeto2!:ProcessInterface;
   url = `http://127.0.0.1:8080/extract/listExtract`;
+
+ 
+
   getData(ruta2: string) {
     
     return new Promise((resolve, reject) => {
@@ -42,6 +50,8 @@ export class ListExtractsComponent implements OnInit {
   //  this.url = `${this.url}/extract/listExtract`;
     try {
       this.data2 = await this.getData( `http://127.0.0.1:8080/extract/listExtract`);
+    //  this.data2= JSON.parse(this.data2);
+     
       if (this.data2 === 'Not mach found') {
         
         Swal.fire(
@@ -50,11 +60,12 @@ export class ListExtractsComponent implements OnInit {
           'error'
         );
       } else {
-        console.log("me ejecute");
-        console.log(this.data2);
-       // this.objeto2 = JSON.parse(this.data2);
+      
+       // console.log(  JSON.parse(this.data2));
+        this.objeto2 = this.data2;
+        console.log(this.objeto2.response.items);
 
-        console.log("hola");
+        
 
       }
     } catch (error) {}
@@ -62,6 +73,9 @@ export class ListExtractsComponent implements OnInit {
 
   obtener() {
     this.SolveData();
+  
+
+    
   }
 
   
@@ -107,8 +121,14 @@ export class ListExtractsComponent implements OnInit {
     this.url2 = `http://127.0.0.1:8080`;
   };
 
+ item = {
+  value:""
 
+ }
 
+ namedata:String=""
+
+ 
 
 
 }

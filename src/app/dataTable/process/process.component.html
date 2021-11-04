@@ -1,0 +1,50 @@
+<div class="show-data-container">
+    <div class="show-data-table">
+
+        <div>
+
+            <table id="example" datatable  [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table "
+                style="background-color: #f8f9fa; table-layout: fixed;">
+                <thead>
+                    <tr class="bg-primary">
+                        <th style="width: 70px!important"> 
+                            <button type="button"class="waves-effect btn actualizarAuto" data-toggle="modal"
+                                data-target=".bd-example-modal-lg" style="background-color:#ffce3bed; width: 35px; height: 35px; margin: 0; padding: 0;"><img src="../assets/imagenes/sync.svg"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button> 
+                                <button class="waves-effect btn borrarAuto" style="background-color:#fb2136; width: 35px; height: 35px; margin: 0; padding: 0;">
+                                    <img src="../assets/imagenes/trash-bin-outline.svg"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button> </th>
+                        <th scope="col">ID</th>
+                        <th scope="col">MARCA</th>
+                        <th scope="col">MODELO</th>
+                        <th scope="col">CATEGORIA</th>
+                        <th scope="col">PUERTAS</th>
+                        <th scope="col">PRECIO</th>
+                        <th scope="col">ID_SOCIO</th>
+                      
+
+
+                    </tr>
+
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let x of data">
+
+                        <td></td>
+                        <td>{{x.id_auto}}</td>
+                        <td>{{x.marca}}</td>
+                        <td>{{x.modelo}}</td>
+                        <td>{{x.categoria}}</td>
+                        <td>{{x.puertas}}</td>
+                        <td>{{x.precio}}</td>
+                        <td>{{x.id_socio}}</td>
+                        
+                 
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>

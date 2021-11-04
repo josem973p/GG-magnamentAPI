@@ -17,6 +17,9 @@ import { ReplicatStatusComponent } from './replicats/replicatStatus/replicat-sta
 import { LogsComponent } from './reports/logs/logs/logs.component';
 import { MessagesComponent } from './reports/messages/messages/messages.component';
 import { TaskManagerComponent } from './reports/taskManager/task-manager/task-manager.component';
+import { ProcessComponent } from './dataTable/process/process.component';
+import { DataTablesModule } from 'angular-datatables';
+
 
 
 
@@ -36,14 +39,16 @@ import { TaskManagerComponent } from './reports/taskManager/task-manager/task-ma
     ReplicatStatusComponent,
     LogsComponent,
     MessagesComponent,
-    TaskManagerComponent
+    TaskManagerComponent,
+    ProcessComponent
     
-   
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
