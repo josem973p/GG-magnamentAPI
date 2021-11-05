@@ -144,11 +144,13 @@
           this.abrir();
           this.start= false;
           this.stop= false;
-          this.listExtracts=true;
+          this.listExtracts=false;
+          this.extracts=true;
           this.listReports=false;
           this.retrieveExtract = false;
           this.extractStatus=false;
           this.listReplicats=false;
+          this.replicats=false;
           this.replicatListsReports=false;
           this.retrieveReplicat=false;
           this.replicatStatus=false;
@@ -170,7 +172,7 @@
     "
       ></i>
 
-      <i style="font-weight: 0;"> Listar Extractos</i>
+      <i style="font-weight: 0;"> Manipular Extractos</i>
       </li>
       <li class="ml-5 mb-1"
       (click)="
@@ -242,7 +244,7 @@
       <i style="font-weight: 0;">Detalles del extracto</i>
         
       </li>
-      <li class="ml-5 mb-1"
+      <!-- <li class="ml-5 mb-1"
       (click)="
          
       this.abrir();
@@ -276,7 +278,7 @@
       ></i>
       <i style="font-weight: 0;">Status del extracto</i>
         
-      </li>
+      </li> -->
     </ul>
    
 
@@ -303,10 +305,12 @@
           this.start= false;
       this.stop= false;
       this.listExtracts=false;
+      this.extracts=false;
       this.listReports=false;
       this.retrieveExtract = false;
       this.extractStatus=false;
-      this.listReplicats=true;
+      this.listReplicats=false;
+      this.replicats=true;
       this.replicatListsReports=false;
       this.retrieveReplicat=false;
       this.replicatStatus=false;
@@ -329,7 +333,7 @@
     "
       ></i>
 
-      <i style="font-weight: 0;"> Listar Replicas</i>
+      <i style="font-weight: 0;"> Manipular Replicas</i>
       </li>
       <li class="ml-5 mb-1"
       (click)="
@@ -400,7 +404,7 @@
       <i style="font-weight: 0;">Detalles de la replica</i>
         
       </li>
-      <li class="ml-5 mb-1"
+      <!-- <li class="ml-5 mb-1"
       (click)="
          
           this.abrir();
@@ -434,7 +438,7 @@
       ></i>
       <i style="font-weight: 0;">Status de la replica</i>
         
-      </li>
+      </li> -->
     </ul>
 
     <h3 class="d-block text-light p-1 border-0 mb-1" style="font-size:20px!important;">
@@ -522,7 +526,7 @@
       <i style="font-weight: 0;">Goldengate Messages</i>
         
       </li>
-      <li class="ml-5 mb-1"
+      <!-- <li class="ml-5 mb-1"
       (click)="
          
           this.abrir();
@@ -557,7 +561,7 @@
       ></i>
       <i style="font-weight: 0;">Task manager</i>
         
-      </li>
+      </li> -->
     </ul>
    
   </div>
@@ -720,6 +724,18 @@
       <div  *ngIf="task"  >
         <app-task-manager></app-task-manager>
       </div>
+
+      <div  *ngIf="extracts" >
+        <br>
+        <app-process style="display: flex; justify-content: center"></app-process>
+      </div>
+     
+     
+      <div *ngIf="replicats" >
+        <br>
+        <app-replicats style="display: flex; justify-content: center"></app-replicats>
+      </div>
+     
       
     </div>
 

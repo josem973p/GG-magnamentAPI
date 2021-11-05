@@ -16,7 +16,7 @@ import { DataTablesModule } from 'angular-datatables';
   templateUrl: './process.component.html',
   styleUrls: ['./process.component.css']
 })
-export class ProcessComponent implements OnInit {
+export class ProcessComponent implements OnInit, AfterViewInit, OnDestroy  {
 
   @ViewChild('content2') someInput!: ElementRef ;
   @ViewChild(DataTableDirective, { static: false })
@@ -27,7 +27,7 @@ export class ProcessComponent implements OnInit {
   message: any;
 
  // constructor(private renderer: Renderer2, private RequestService: RequestService) {}
-  constructor(private renderer: Renderer2, private fb: FormBuilder) {}
+  constructor(private renderer: Renderer2) {}
 
 
   dato: any;
@@ -35,14 +35,31 @@ export class ProcessComponent implements OnInit {
   nodos: any;
   boton: any;
   showForm = false;
-  ruta = 'http://127.0.0.1:5000/getAutos';
 
+  paramsStart = {
+    "schema":"ogg:command",
+    "name":"start",
+    "processName":"",
+    "processType":"extract"
+  }
+
+  paramsStop = {
+    "schema":"ogg:command",
+    "name":"stop",
+    "processName":"",
+    "processType":"extract"
+  }
  
 
 
-
   ngOnInit(): void {
-   
+    this.fetchData('http://127.0.0.1:8080/extract/data').then(data => {
+  
+      this.objeto2 = data
+      console.log(this.objeto2)
+      this.dtTrigger.next();
+
+    });
 
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -51,39 +68,38 @@ export class ProcessComponent implements OnInit {
         {
           title: 'Acciones',
           render: function (data: any, type: any, full: any) {
-            return '<button type="button"  class="waves-effect btn actualizarAuto"  style="background-color:#ffce3bed; width: 35px; height: 35px; margin: 0; padding: 0; border-radius:5px" ><img src="../assets/imagenes/sync.svg"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button> <button class="waves-effect btn borrarAuto" style="background-color:#fb2136; width: 35px; height: 35px; margin: 0; padding: 0; border-radius:5px"><img src="../assets/imagenes/trash-bin-outline.svg"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button>  ';
+            return '<button type="button"  class="waves-effect btn start"  style="background-color:#00dd1e; width: 35px; height: 35px; margin: 0; padding: 0; border-radius:5px" ><img src="../assets/imagenes/play.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button> <button class="waves-effect btn stop" style="background-color:#ff0019; width: 35px; height: 35px; margin: 0; padding: 0; border-radius:5px"><img src="../assets/imagenes/stop.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button>  ';
           },
         },
         {
-          title: 'ID',
-          data: 'ID',
+          title: 'NAME',
+          data: 'NAME',
         },
         {
-          title: 'MARCA',
-          data: 'MARCA',
+          title: 'STATUS',
+          data: 'STATUS',
         },
         {
-          title: 'MODELO',
-          data: 'MODELO',
+          title: 'LAST_STARTED',
+          data: 'LAST_STARTED',
         },
         {
-          title: 'CATEGORIA',
-          data: 'CATEGORIA',
+          title: 'LAG',
+          data: 'LAG',
         },
         {
-          title: 'PUERTAS',
-          data: 'PUERTAS',
+          title: 'SINCE_LAG_REPORTED',
+          data: 'SINCE_LAG_REPORTED',
         },
         {
-          title: 'PRECIO',
-          data: 'PRECIO',
+          title: 'POSITION',
+          data: 'POSITION',
         },
-        {
-          title: 'ID_SOCIO',
-          data: 'ID_SOCIO',
-        }
+     
       ],
     };
+
+    
   }
 
   ngAfterViewInit(): void {
@@ -95,24 +111,53 @@ export class ProcessComponent implements OnInit {
       this.boton = this.nodos.className;
 
       if (
-        this.boton.includes('borrarAuto') ||
-        this.boton.includes('actualizarAuto')
+        this.boton.includes('stop') ||
+        this.boton.includes('start')
       ) {
-        if (this.boton.includes('borrarAuto')) {
+        if (this.boton.includes('stop')) {
+          this.nodos = this.nodos.parentNode;
+          this.nodos = this.nodos.parentNode;
+          console.log(' me tocaste!! soy un stop')
+          
+
+          let noditos: any;
+          noditos = this.nodos.childNodes[1].textContent;
+          console.log(noditos)
+          this.paramsStop.processName=noditos
+          this.agregarParametrosStop();
+
+          this.stop().then(data => {
+  
+            //  this.objeto2 = data
+              console.log(data)
+             
+        
+            });
+            this. rerender()
+             
+        
+        } else if (this.boton.includes('start')) {
+          console.log('me tocaste!! soy un start')
           this.nodos = this.nodos.parentNode;
           this.nodos = this.nodos.parentNode;
 
           let noditos: any;
           noditos = this.nodos.childNodes[1].textContent;
-          this.sweet3(noditos);
-        } else if (this.boton.includes('actualizarAuto')) {
-          this.nodos = this.nodos.parentNode;
-          this.nodos = this.nodos.parentNode;
+          console.log(noditos)
+          this.paramsStart.processName=noditos
+          this.agregarParametrosStart();
 
-          let noditos: any;
-          noditos = this.nodos.childNodes[1].textContent;
+          this.start().then(data => {
+  
+          //  this.objeto2 = data
+            console.log(data)
+           
+      
+          });
+          this. rerender()
+           
 
-          this.SolveData(noditos);
+        //  this.SolveData();
 
         }
       }
@@ -125,114 +170,138 @@ export class ProcessComponent implements OnInit {
 
   rerender(): void {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+
+      this.fetchData('http://127.0.0.1:8080/extract/data').then(data => {
+  
+      this.objeto2 = data
+      console.log(this.objeto2)
+      
+
+      this.dtOptions = {
+        pagingType: 'full_numbers',
+        pageLength: 5,
+        columns: [
+          {
+            title: 'Acciones',
+            render: function (data: any, type: any, full: any) {
+              return '<button type="button"  class="waves-effect btn start"  style="background-color:#00dd1e; width: 35px; height: 35px; margin: 0; padding: 0; border-radius:5px" ><img src="../assets/imagenes/play.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button> <button class="waves-effect btn stop" style="background-color:#ff0019; width: 35px; height: 35px; margin: 0; padding: 0; border-radius:5px"><img src="../assets/imagenes/stop.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button>  ';
+            },
+          },
+          {
+            title: 'NAME',
+            data: 'NAME',
+          },
+          {
+            title: 'STATUS',
+            data: 'STATUS',
+          },
+          {
+            title: 'LAST_STARTED',
+            data: 'LAST_STARTED',
+          },
+          {
+            title: 'LAG',
+            data: 'LAG',
+          },
+          {
+            title: 'SINCE_LAG_REPORTED',
+            data: 'SINCE_LAG_REPORTED',
+          },
+          {
+            title: 'POSITION',
+            data: 'POSITION',
+          },
+       
+        ],
+      };
+
+      dtInstance.destroy();
+
+      this.dtTrigger.next();
+
+
+
+    });
+
+
+       
+
+      
+
    
     });
   }
 
-  auto = {
-    id_auto: '',
-    marca: '',
-    modelo: '',
-    categoria: '',
-    puertas: '',
-    precio: '',
-    id_socio: '',
-  };
-
-  auto2 = {
-    id_auto: '',
-    marca: '',
-    modelo: '',
-    categoria: '',
-    puertas: '',
-    precio: '',
-    id_socio: '',
-  };
+  
 
   open = false;
   
 
-  ruta2 = ` http://127.0.0.1:5000/getAutoBy`;
+  ruta2 = `http://127.0.0.1:8080/extract/data`;
 
   data2: any;
   objeto2: any;
-  getData(ruta2: string, noditos: any) {
-    ruta2 = `${ruta2}/${noditos}`;
+
+ // objeto2 = {
+//    "name":"",
+ //   "status":"",
+ //   "lastStarted":"",
+ //   "lag":null,
+ //   "sinceLagReported":null,
+ //   "position":""
+ // }
+  
+  fetchData(ruta: string) {
     return new Promise((resolve, reject) => {
       const xhttp = new XMLHttpRequest();
-      xhttp.open('GET', ruta2, true);
-      xhttp.onreadystatechange = () => {
+      xhttp.open('GET', ruta, true);
+      xhttp.onreadystatechange = (() => {
+
         if (xhttp.readyState === 4) {
-          xhttp.status === 200
-            ? resolve(xhttp.responseText)
-            : reject(new Error('Error'));
+
+
+          (xhttp.status === 200) ?
+            resolve(JSON.parse(xhttp.responseText))
+
+            : Swal.fire(
+              'Error de conexion ',
+              'Por favor intentalo mas tarde',
+              'error'
+            )
         }
-      };
+      });
       xhttp.send();
-    });
+    })
+
   }
 
-  isfound = false;
-  isfound2 = false;
+  // _______________________________-________START EXTRACT ______________________________________________________
+  //Metodo para  mandar parametros
 
-  SolveData = async (noditos: any) => {
-  
-    try {
-      this.data2 = await this.getData(this.ruta2, noditos);
-      if (this.data2 === 'Not mach found') {
-        this.isfound = false;
-        Swal.fire(
-          'No se encontraron datos',
-          'Por favor  revisa el dato a buscar e intantelo de nuevo',
-          'error'
-        );
-      } else {
-        this.isfound = true;
-        this.objeto2 = JSON.parse(this.data2);
-
-        this.auto = this.objeto2;
-
-      }
-    } catch (error) {}
-  };
-  //_______________________________________AGREGAR_______________________________
-
-  agregar() {
-    this.addserver();
-    /** 
-    if (this.auto2.id_auto != '') {
-      
-    } else {
-      Swal.fire(
-        'Verifica los datos!',
-        'No se puede mandar el campo "SERVIDOR_NOMBRE" vacio! ',
-        'error'
-      );
-    } */
+  agregarParametrosStart() {
+    this.startExtract();
+    
   }
-  url = `http://127.0.0.1:5000`;
+  url = `http://127.0.0.1:8080`;
   settings: any;
-  addserver = async () => {
+  startExtract = async () => {
     try {
       const { hostname: location } = window.location;
-      this.url = `${this.url}/addAuto`;
+      this.url = `${this.url}/credentials/taskParams`;
       this.settings = {
         method: 'POST',
-        body: JSON.stringify(this.auto2),
+        body: JSON.stringify(this.paramsStart),
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-        },
-        params:{
-          token:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiaG9sYSIsImV4cCI6MTYzMTUwNTA2NX0.bJx8p53XUYFpdGDJ0IxZOwLzT8d6c_7mSvAuk9gxtoo'
         }
       };
 
       const response = await fetch(this.url, this.settings);
       if (response.ok) {
-        this.rerender();
+        
 
-        Swal.fire('Datos enviados!', 'Se añadio a la base de datos', 'success');
+        Swal.fire('Datos enviados!', 'Se registraron los datos de inicio de sesion', 'success');
       }
     } catch (error) {
       Swal.fire(
@@ -242,146 +311,103 @@ export class ProcessComponent implements OnInit {
       );
     }
 
-    this.url = `http://127.0.0.1:5000`;
+    this.url = `http://127.0.0.1:8080`;
   };
 
-  //_______________________________________ACTUALIZAR__________________________________________________________
 
 
+// Metodo  para mandar la peticion
 
-  actualizar() {
-    this.updateserver();
-  }
+  rutaStart="http://127.0.0.1:8080/task/dotask"
+  start() {
+    return new Promise((resolve, reject) => {
+      const xhttp = new XMLHttpRequest();
+      xhttp.open('GET', this.rutaStart, true);
+      xhttp.onreadystatechange = (() => {
 
-  url2 = `http://127.0.0.1:5000`;
+        if (xhttp.readyState === 4) {
 
-  settings2: any;
-  updateserver = async () => {
-    try {
-      const { hostname: location } = window.location;
 
-      this.url2 = `http://127.0.0.1:5000/updateAuto/${this.auto.id_auto}`;
-      console.log(this.url2);
-      this.settings2 = {
-        method: 'PUT',
-        body: JSON.stringify(this.auto),
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      };
+          (xhttp.status === 200) ?
+            resolve(JSON.parse(xhttp.responseText))
 
-      const response = await fetch(this.url2, this.settings2);
-      if (response.ok) {
-        this.rerender();
-        Swal.fire(
-          'Datos enviados!',
-          'Se Actualizo el registro en  la base de datos',
-          'success'
-        );
-      }
-    } catch (error) {
-      Swal.fire(
-        'Error',
-        'Hubo un error al enviar por favor revisa que la informacion sea correcta o intentalo mas tarde.',
-        'error'
-      );
-    }
-
-    this.url = `http://127.0.0.1:5000`;
-  };
-
-  //__________________________________________________ELIMINAR__________________________________________________________
-  async delete(noditos: any) {
-    try {
-      const response = await fetch(
-        ` http://127.0.0.1:5000/delAuto/${noditos}`,
-        {
-          method: 'DELETE',
-          headers: {
-            'Content-type': 'application/json',
-          },
+            : Swal.fire(
+              'Error de conexion ',
+              'Por favor intentalo mas tarde',
+              'error'
+            )
         }
-      );
-      if (response.ok) {
-        this.rerender();
-        Swal.fire(
-          'Datos Eliminados!',
-          'Se elimino el registro de  la base de datos',
-          'success'
-        );
+      });
+      xhttp.send();
+    })
+
+  }
+
+//___________________________STOP  EXTRACT__________________________________________________
+
+ //Metodo para  mandar parametros
+
+ agregarParametrosStop() {
+  this.stopExtract();
+  
+}
+
+
+stopExtract = async () => {
+  try {
+    const { hostname: location } = window.location;
+    this.url = `${this.url}/credentials/taskParams`;
+    this.settings = {
+      method: 'POST',
+      body: JSON.stringify(this.paramsStop),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       }
-    } catch (error) {
-      Swal.fire(
-        'Error',
-        'Hubo un error al enviar, por favor revisa que la informacion sea correcta o intentalo mas tarde.',
-        'error'
-      );
+    };
+
+    const response = await fetch(this.url, this.settings);
+    if (response.ok) {
+      
+
+      Swal.fire('Datos enviados!', 'Se registraron los datos de inicio de sesion', 'success');
     }
-  }
-  sweet() {
-    Swal.fire({
-      title: 'Deseas Confirmar el envio de los Datos?',
-      text: 'Se enviara la peticion al servidor',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Si, confirmo el envio',
-      cancelButtonText: 'No, deseo verificar los datos',
-    }).then((result) => {
-      if (result.value) {
-        this.agregar();
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Se cancelo el envio',
-          'Los datos no se enviaron a la base de datos',
-          'error'
-        );
-      }
-    });
+  } catch (error) {
+    Swal.fire(
+      'Error',
+      'Hubo un error al enviar por favor revisa que la informacion sea correcta o intentalo mas tarde.',
+      'error'
+    );
   }
 
-  sweet2() {
-    Swal.fire({
-      title: 'Deseas Confirmar la actualizacion de los Datos?',
-      text: 'Se enviara la peticion al servidor',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Si, confirmo el envio',
-      cancelButtonText: 'No, deseo verificar los datos',
-    }).then((result) => {
-      if (result.value) {
-        this.actualizar();
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Se cancelo el envio',
-          'Los datos no se enviaron a la base de datos',
-          'error'
-        );
-      }
-    });
-  }
+  this.url = `http://127.0.0.1:8080`;
+};
 
-  sweet3(noditos: any) {
-    Swal.fire({
-      title: 'Deseas Confirmar la eliminacion de los Datos?',
-      text: 'Se enviara la peticion al servidor',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Si, confirmo el envio',
-      cancelButtonText: 'No, deseo verificar los datos',
-    }).then((result) => {
-      if (result.value) {
-        this.delete(noditos);
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Se cancelo el envio',
-          'Los datos no se enviaron a la base de datos',
-          'error'
-        );
-      }
-    });
-  }
+// Metodo  para mandar la peticion
+  rutaStop="http://127.0.0.1:8080/task/dotask"
+  stop() {
+    return new Promise((resolve, reject) => {
+      const xhttp = new XMLHttpRequest();
+      xhttp.open('GET', this.rutaStop, true);
+      xhttp.onreadystatechange = (() => {
 
+        if (xhttp.readyState === 4) {
+
+
+          (xhttp.status === 200) ?
+            resolve(JSON.parse(xhttp.responseText))
+
+            : Swal.fire(
+              'Error de conexion ',
+              'Por favor intentalo mas tarde',
+              'error'
+            )
+        }
+      });
+      xhttp.send();
+    })
+
+  }
 
 
 

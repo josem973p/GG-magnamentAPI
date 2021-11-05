@@ -19,6 +19,7 @@ import { MessagesComponent } from './reports/messages/messages/messages.componen
 import { TaskManagerComponent } from './reports/taskManager/task-manager/task-manager.component';
 import { ProcessComponent } from './dataTable/process/process.component';
 import { DataTablesModule } from 'angular-datatables';
+import { ReplicatsComponent } from './dataTable/replicats/replicats.component';
 
 
 
@@ -40,7 +41,8 @@ import { DataTablesModule } from 'angular-datatables';
     LogsComponent,
     MessagesComponent,
     TaskManagerComponent,
-    ProcessComponent
+    ProcessComponent,
+    ReplicatsComponent
     
     
   ],

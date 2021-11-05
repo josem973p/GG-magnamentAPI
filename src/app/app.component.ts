@@ -146,6 +146,8 @@ export class AppComponent {
   public logs=false;
   public messages=false;
   public task=false;
+  public extracts = false;
+  public replicats = false;
 
   datos = {
     url: '',
