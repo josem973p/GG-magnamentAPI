@@ -27,6 +27,44 @@ Critical Events
   </div>
 </div>
 </div>
-<h2>Respuesta</h2>
-<textarea name="response" id="" cols="175" rows="10" [(ngModel)]="this.data2" ></textarea>
+<!-- <textarea name="response" id="" cols="175" rows="10" [(ngModel)]="this.data2" ></textarea> -->
 <!-- [(ngModel)]="this.data2" -->
+
+<br>
+<div class="show-data-container" style="width:95%; max: width 1500px; display: flex; justify-content: center">
+    <div class="show-data-table">
+
+        <div>
+
+            <table id="example" datatable  [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table "
+                style="background-color: #f8f9fa; table-layout: fixed;">
+                <thead>
+                    <tr class="bg-primary">
+                        <th scope="col"  style="width: 70px!important">DATE</th>
+                        <th scope="col" style="width: 60px!important">MESSAGE</th>
+
+            
+
+                    </tr>
+
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let x of objeto2">
+
+                        <td>{{x.date}}</td>
+                        <td>{{x.message}}</td>
+                  
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+

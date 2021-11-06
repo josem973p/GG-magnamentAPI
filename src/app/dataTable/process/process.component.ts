@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild,ViewEncapsulation } from '@angular/core';
 import {
   AfterViewInit,
 
@@ -10,6 +10,7 @@ import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2';
 import { DataTablesModule } from 'angular-datatables';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-process',
@@ -18,7 +19,7 @@ import { DataTablesModule } from 'angular-datatables';
 })
 export class ProcessComponent implements OnInit, AfterViewInit, OnDestroy  {
 
-  @ViewChild('content2') someInput!: ElementRef ;
+  @ViewChild('content') someInput!: ElementRef ;
   @ViewChild(DataTableDirective, { static: false })
   dtElement: DataTableDirective | any;
   dtOptions: DataTables.Settings = {};
@@ -27,7 +28,8 @@ export class ProcessComponent implements OnInit, AfterViewInit, OnDestroy  {
   message: any;
 
  // constructor(private renderer: Renderer2, private RequestService: RequestService) {}
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2,private modalService: NgbModal) {}
+
 
 
   dato: any;
@@ -409,6 +411,10 @@ stopExtract = async () => {
 
   }
 
+
+ openLg(content:any) {
+    this.modalService.open(content, { size: 'lg' });
+  }
 
 
 }
