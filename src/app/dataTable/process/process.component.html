@@ -1,6 +1,6 @@
 <br>
 <br>
-<div class="show-data-container" style="width:95%; max: width 1500px; display: flex; justify-content: center">
+<div class="show-data-container" style="width:95%; max: width 1500px; display: flex; justify-content: center; width:auto">
     <div class="show-data-table">
 
         <div>
@@ -13,7 +13,9 @@
                             <button type="button"class="waves-effect btn start" data-toggle="modal"
                                 data-target=".bd-example-modal-lg" style="background-color:#00dd1e; width: 35px; height: 35px; margin: 0; padding: 0;"><img src="../assets/imagenes/play.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button> 
                                 <button class="waves-effect btn stop" style="background-color:#ff0019; width: 35px; height: 35px; margin: 0; padding: 0;">
-                                    <img src="../assets/imagenes/stop.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button> </th>
+                                    <img src="../assets/imagenes/stop.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button>
+                                    <button class="waves-effect btn info" style="background-color:#0099ff; width: 35px; height: 35px; margin: 0; padding: 0;"> <img src="../assets/imagenes/stop.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button> 
+                                </th>
                         <th scope="col"  style="width: 70px!important">NAME</th>
                         <th scope="col" style="width: 60px!important">STATUS</th>
                         <th scope="col"  style="width: 150px!important">LAST_STARTED</th>
@@ -54,45 +56,180 @@
 
 <ng-template #content let-modal>
     <div class="modal-header">
-      <h4 class="modal-title">Modal title</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <h4 class="modal-title">INFORMACION EXTRACTO: {{this.datos2.parametro}}</h4>
+      <button type="button" class="close" aria-label="Close"  style="margin-right:10px; width:30px; background-color:rgb(226, 50, 50);  border-radius:6px; border-style: none!important;" (click)="modal.dismiss('Cross click') ">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <p>One fine body&hellip;</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
-    </div>
-  </ng-template>
-  
-  <ng-template #longContent let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title">Modal title</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-      <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-      <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-      <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-      <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-      <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-      <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-      <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-      <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-      <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-      <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-      <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+     
+
+      <form>
+        <div class="form">
+            <div>
+                <label style="margin-right: 5px;"> <strong>ALIAS  </strong>  </label>
+                <input
+                  type="text"
+                  readonly="true"
+                  name="ALIAS"
+                  [(ngModel)]="details.alias"
+                  
+                  style="width: 250px;"
+                />
+              </div>
+              <div>
+                <label style="margin-right: 5px;"> <strong>DOMAIN  </strong>  </label>
+                <input
+                  type="text"
+                  readonly="true"
+                  name="DOMAIN"
+                  [(ngModel)]="details.domain"
+                  
+                  style="width: 250px;"
+                />
+              </div>
+              <div>
+                <label style="margin-right: 5px;"> <strong>INTENT  </strong>  </label>
+                <input
+                  type="text"
+                  readonly="true"
+                  name="INTENT"
+                  [(ngModel)]="details.intent"
+                  
+                  style="width: 250px;"
+                />
+              </div>
+              <div>
+                <label style="margin-right: 5px;"> <strong>ENCRYPTION_PROFILE  </strong>  </label>
+                <input
+                  type="text"
+                  readonly="true"
+                  name="ENCRYPTION_PROFILE"
+                  [(ngModel)]="details.encryptionProfile"
+                  
+                  style="width: 250px;"
+                />
+              </div>
+              <div>
+                <label style="margin-right: 5px;"> <strong>NAME  </strong>  </label>
+                <input
+                  type="text"
+                  readonly="true"
+                  name="NAME"
+                  [(ngModel)]="details.name"
+                  
+                  style="width: 250px;"
+                />
+              </div>
+              <div>
+                <label style="margin-right: 5px;"> <strong>PATH  </strong>  </label>
+                <input
+                  type="text"
+                  readonly="true"
+                  name="PATH"
+                  [(ngModel)]="details.path"
+                  
+                  style="width: 250px;"
+                />
+              </div>
+              <div>
+                <label style="margin-right: 5px;"> <strong>SIZE_MB  </strong>  </label>
+                <input
+                  type="text"
+                  readonly="true"
+                  name="SIZE_MB"
+                  [(ngModel)]="details.sizeMB"
+                  
+                  style="width: 250px;"
+                />
+              </div>
+              <div>
+                <label style="margin-right: 5px;"> <strong>SEQUENCE_LENGTH  </strong>  </label>
+                <input
+                  type="text"
+                  readonly="true"
+                  name="SEQUENCE_LENGTH"
+                  [(ngModel)]="details.sequenceLength"
+                  
+                  style="width: 250px;"
+                />
+              </div>
+              <div>
+                <label style="margin-right: 5px;"> <strong>SEQUENCE  </strong>  </label>
+                <input
+                  type="text"
+                  readonly="true"
+                  name="SEQUENCE"
+                  [(ngModel)]="details.sequence"
+                  
+                  style="width: 250px;"
+                />
+              </div>
+              <div>
+                <label style="margin-right: 5px;"> <strong>OFFSET  </strong>  </label>
+                <input
+                  type="text"
+                  readonly="true"
+                  name="OFFSET"
+                  [(ngModel)]="details.offset"
+                  
+                  style="width: 250px;"
+                />
+              </div>
+              <div>
+                <label style="margin-right: 5px;"> <strong>SOURCE  </strong>  </label>
+                <input
+                  type="text"
+                  readonly="true"
+                  name="SOURCE"
+                  [(ngModel)]="details.source"
+                  
+                  style="width: 250px;"
+                />
+              </div>
+              <div>
+                <label style="margin-right: 5px;"> <strong>TYPE  </strong>  </label>
+                <input
+                  type="text"
+                  readonly="true"
+                  name="TYPE"
+                  [(ngModel)]="details.type"
+                  
+                  style="width: 250px;"
+                />
+              </div>
+              <div>
+                <label style="margin-right: 5px;"> <strong>CSN  </strong>  </label>
+                <input
+                  type="text"
+                  readonly="true"
+                  name="CSN"
+                  [(ngModel)]="details.csn"
+                  
+                  style="width: 250px;"
+                />
+              </div>
+              <div>
+                <label style="margin-right: 5px;"> <strong>STATUS  </strong>  </label>
+                <input
+                  type="text"
+                  readonly="true"
+                  name="STATUS"
+                  [(ngModel)]="details.status"
+                  
+                  style="width: 250px;"
+                />
+              </div>
+         
+             
+           
+        <br />
+       
+        <br>
+        <!-- <textarea name="" id="" cols="175" rows="5" readonly></textarea> -->
+        </div>
+      
+      </form>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
@@ -100,5 +237,4 @@
   </ng-template>
   
 
-  <button class="btn btn-outline-primary mb-2 mr-2" (click)="openLg(content)">Large modal</button>
  

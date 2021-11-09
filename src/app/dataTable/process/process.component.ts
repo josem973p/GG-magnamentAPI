@@ -27,6 +27,8 @@ export class ProcessComponent implements OnInit, AfterViewInit, OnDestroy  {
   data: any;
   message: any;
 
+  dataExtract:any
+
  // constructor(private renderer: Renderer2, private RequestService: RequestService) {}
   constructor(private renderer: Renderer2,private modalService: NgbModal) {}
 
@@ -70,7 +72,7 @@ export class ProcessComponent implements OnInit, AfterViewInit, OnDestroy  {
         {
           title: 'Acciones',
           render: function (data: any, type: any, full: any) {
-            return '<button type="button"  class="waves-effect btn start"  style="background-color:#00dd1e; width: 35px; height: 35px; margin: 0; padding: 0; border-radius:5px" ><img src="../assets/imagenes/play.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button> <button class="waves-effect btn stop" style="background-color:#ff0019; width: 35px; height: 35px; margin: 0; padding: 0; border-radius:5px"><img src="../assets/imagenes/stop.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button>  ';
+            return '<button type="button"  class="waves-effect btn start"  style="background-color:#00dd1e; width: 35px; height: 35px; margin: 0; padding: 0; border-radius:5px" ><img src="../assets/imagenes/play.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button> <button class="waves-effect btn stop" style="background-color:#ff0019; width: 35px; height: 35px; margin: 0; padding: 0; border-radius:5px"><img src="../assets/imagenes/stop.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button>  <button class="waves-effect btn info" style="background-color:#0099ff; width: 35px; height: 35px; margin: 0; padding: 0;"> <img src="../assets/imagenes/stop.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button> ';
           },
         },
         {
@@ -162,6 +164,26 @@ export class ProcessComponent implements OnInit, AfterViewInit, OnDestroy  {
         //  this.SolveData();
 
         }
+      }else if (this.boton.includes('info')) {
+        console.log('me tocaste!! soy un info')
+        this.nodos = this.nodos.parentNode;
+        this.nodos = this.nodos.parentNode;
+
+        let noditos: any;
+        noditos = this.nodos.childNodes[1].textContent;
+        console.log(noditos)
+
+
+
+        this.datos2.parametro=noditos;
+       console.log("este es el parametro"+this.datos2.parametro)
+       
+      
+        
+       this.agregar();
+        this.SolveData();
+        this. rerender()
+
       }
     });
   }
@@ -186,7 +208,7 @@ export class ProcessComponent implements OnInit, AfterViewInit, OnDestroy  {
           {
             title: 'Acciones',
             render: function (data: any, type: any, full: any) {
-              return '<button type="button"  class="waves-effect btn start"  style="background-color:#00dd1e; width: 35px; height: 35px; margin: 0; padding: 0; border-radius:5px" ><img src="../assets/imagenes/play.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button> <button class="waves-effect btn stop" style="background-color:#ff0019; width: 35px; height: 35px; margin: 0; padding: 0; border-radius:5px"><img src="../assets/imagenes/stop.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button>  ';
+              return '<button type="button"  class="waves-effect btn start"  style="background-color:#00dd1e; width: 35px; height: 35px; margin: 0; padding: 0; border-radius:5px" ><img src="../assets/imagenes/play.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button> <button class="waves-effect btn stop" style="background-color:#ff0019; width: 35px; height: 35px; margin: 0; padding: 0; border-radius:5px"><img src="../assets/imagenes/stop.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button> <button class="waves-effect btn info" style="background-color:#0099ff; width: 35px; height: 35px; margin: 0; padding: 0;"> <img src="../assets/imagenes/stop.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button>  ';
             },
           },
           {
@@ -280,6 +302,8 @@ export class ProcessComponent implements OnInit, AfterViewInit, OnDestroy  {
   // _______________________________-________START EXTRACT ______________________________________________________
   //Metodo para  mandar parametros
 
+
+
   agregarParametrosStart() {
     this.startExtract();
     
@@ -303,7 +327,7 @@ export class ProcessComponent implements OnInit, AfterViewInit, OnDestroy  {
       if (response.ok) {
         
 
-        Swal.fire('Datos enviados!', 'Se registraron los datos de inicio de sesion', 'success');
+        
       }
     } catch (error) {
       Swal.fire(
@@ -321,6 +345,9 @@ export class ProcessComponent implements OnInit, AfterViewInit, OnDestroy  {
 // Metodo  para mandar la peticion
 
   rutaStart="http://127.0.0.1:8080/task/dotask"
+
+
+  
   start() {
     return new Promise((resolve, reject) => {
       const xhttp = new XMLHttpRequest();
@@ -328,11 +355,11 @@ export class ProcessComponent implements OnInit, AfterViewInit, OnDestroy  {
       xhttp.onreadystatechange = (() => {
 
         if (xhttp.readyState === 4) {
-
-
+         
+         
           (xhttp.status === 200) ?
-            resolve(JSON.parse(xhttp.responseText))
-
+            resolve( Swal.fire('Peticion enviada!', 'El Servidor respodio: '+ xhttp.responseText, 'success'))
+          
             : Swal.fire(
               'Error de conexion ',
               'Por favor intentalo mas tarde',
@@ -372,7 +399,7 @@ stopExtract = async () => {
     if (response.ok) {
       
 
-      Swal.fire('Datos enviados!', 'Se registraron los datos de inicio de sesion', 'success');
+     
     }
   } catch (error) {
     Swal.fire(
@@ -397,7 +424,7 @@ stopExtract = async () => {
 
 
           (xhttp.status === 200) ?
-            resolve(JSON.parse(xhttp.responseText))
+          resolve( Swal.fire('Peticion enviada!', 'El Servidor respodio: '+ xhttp.responseText, 'success'))
 
             : Swal.fire(
               'Error de conexion ',
@@ -416,5 +443,122 @@ stopExtract = async () => {
     this.modalService.open(content, { size: 'lg' });
   }
 
+  datos:any
+  //metodo para mandar datos para obtener detalles
+
+  datos2 = {
+    url: '',
+    user:'',
+    password:'',
+    parametro:''
+  };
+
+
+  details ={
+
+    alias:"",
+    domain:"",
+    intent:"",
+    encryptionProfile:"",
+    name:"",
+    path:"",
+    sizeMB:null,
+    sequenceLength:null,
+    sequence:null,
+    offset:null,
+    source:"",
+    type:"",
+    csn:null,
+    status:""
+  }
+
+  
+ 
+  agregar() {
+    this.sendParam();
+    
+  }
+  url2 = `http://127.0.0.1:8080`;
+  settings2: any;
+  sendParam = async () => {
+    try {
+      const { hostname: location } = window.location;
+      this.url2 = `${this.url2}/credentials/param`;
+      console.log("este es la url para lo parametos"+this.url2)
+      this.settings2 = {
+        method: 'POST',
+        body: JSON.stringify(this.datos2),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }
+      };
+
+      const response = await fetch(this.url2, this.settings2);
+      if (response.ok) {
+        
+
+        Swal.fire('Peticion Enviada!', 'Consultando Informacion del  extracto: '+this.datos2.parametro, 'success');
+      }
+    } catch (error) {
+      Swal.fire(
+        'Error',
+        'Error al enviar el parametro'
+      );
+    }
+
+    this.url2 = `http://127.0.0.1:8080`;
+  };
+
+
+
+
+//__________________________________________________Metodo para obtener detalles_____________________
+
+ rutaInfo="http://127.0.0.1:8080/extract/extractDetail"
+
+
+ getData(ruta2: string) {
+    
+  return new Promise((resolve, reject) => {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET',  `http://127.0.0.1:8080/extract/extractDetail`, true);
+    xhttp.onreadystatechange = () => {
+      if (xhttp.readyState === 4) {
+        xhttp.status === 200
+          ? resolve(xhttp.responseText)
+          : reject(new Error('Error'));
+      }
+    };
+    xhttp.send();
+  });
+}
+ SolveData = async () => {
+  //  this.url = `${this.url}/extract/listExtract`;
+    try {
+      this.data2 = await this.getData( `http://127.0.0.1:8080/extract/extractDetail`);
+      if (this.data2 === 'Not mach found') {
+        
+        Swal.fire(
+          'No se encontraron datos',
+          'Por favor  revisa el dato a buscar e intantelo de nuevo',
+          'error'
+        );
+      } else {
+   
+
+        this.dataExtract = this.data2
+        console.log(this.dataExtract);
+        this.dataExtract = JSON.parse(this.data2);
+        this.details=this.dataExtract;
+
+     console.log(typeof(this.details));
+     console.log(this.details)
+     this.openLg(this.someInput);
+
+
+      }
+    } catch (error) {}
+  };
 
 }

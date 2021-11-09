@@ -66,7 +66,7 @@ export class RetrieveReplicatComponent implements OnInit {
     
     return new Promise((resolve, reject) => {
       const xhttp = new XMLHttpRequest();
-      xhttp.open('GET',  `http://127.0.0.1:8080/replicat/replicatDetail`, true);
+      xhttp.open('GET',  `http://127.0.0.1:8080/replicat/replicatDetailFull`, true);
       xhttp.onreadystatechange = () => {
         if (xhttp.readyState === 4) {
           xhttp.status === 200
@@ -81,7 +81,7 @@ export class RetrieveReplicatComponent implements OnInit {
   SolveData = async () => {
   //  this.url = `${this.url}/extract/listExtract`;
     try {
-      this.data2 = await this.getData( `http://127.0.0.1:8080/replicat/replicatDetail`);
+      this.data2 = await this.getData( `http://127.0.0.1:8080/replicat/replicatDetailFull`);
       if (this.data2 === 'Not mach found') {
         
         Swal.fire(

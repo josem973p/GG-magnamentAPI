@@ -216,6 +216,7 @@
           this.start= false;
           this.stop= false;
           this.listExtracts=false;
+          this.extracts=false;
           this.listReports=false;
           this.retrieveExtract = true;
           this.extractStatus=false;
@@ -649,26 +650,17 @@
                    
                 <br />
                 <div class="update-data-botones" style="display: flex; flex-direction:row;  margin-left: 50px;">
-                  <div
-                    class="update-data-button-container ml-3"
-                    style="width: 150px"
+                 
+                  <button
+                  class="btn btn-primary align-self-center"
+                  style="width: 220px"
+                  (click)="this.agregar()"
                   >
-                    <button
-                      class="btn btn-primary align-self-center"
-                      style="width: 200px"
-                      (click)="this.agregar()"
-                      >
-                     
-                      Establecer Datos
-                     
-                    </button>
-                  <div
-                    class="button-container align-self-center mr-3"
-                    style="width: 250px"
-                  >
+                 
+                  Establecer Datos
+                 
+                </button>
                
-                  </div>
-                </div>
                 </div>
                 <br>
                 <!-- <textarea name="" id="" cols="175" rows="5" readonly></textarea> -->
@@ -679,6 +671,8 @@
 
           </div>
         </div>
+
+
       </div>
       
     </section>
@@ -741,3 +735,66 @@
 
   </div>
 </div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" style="margin-left:15px">Datos de Inicio de Sesión</h4>
+    <button type="button" class="close" aria-label="Close"  style="margin-right:10px; width:30px; background-color:rgb(226, 50, 50);  border-radius:6px; border-style: none!important;" (click)="modal.dismiss('Cross click') ">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p  style="margin-left:15px">Ingresa los Datos de Sesión&hellip;</p>
+
+    <form>
+      <div class="form-modal">
+          <div>
+              <label style="margin-right: 5px;"> <strong>URL  </strong>  </label>
+              <input
+                type="text"
+                
+                name="ALIAS"
+                [(ngModel)]="datos.url"
+                
+                style="width: 250px;"
+              />
+            </div>
+            <div>
+              <label style="margin-right: 5px;"> <strong>USER  </strong>  </label>
+              <input
+                type="text"
+               
+                name="DOMAIN"
+                [(ngModel)]="datos.user"
+                
+                style="width: 250px;"
+              />
+            </div>
+            <div>
+              <label style="margin-right: 5px;"> <strong>PASSWORD  </strong>  </label>
+              <input
+                type="text"
+               
+                name="INTENT"
+                [(ngModel)]="datos.password"
+                
+                style="width: 250px;"
+              />
+            </div> 
+      <br />
+     
+      <br>
+      <!-- <textarea name="" id="" cols="175" rows="5" readonly></textarea> -->
+      </div>
+    
+    </form>
+  </div>
+  <div class="modal-footer">
+    <br>
+    <button class="btn btn-outline-primary mb-2 mr-2" (click)="this.agregar()"  style="margin-right:20px; width:200px">Establecer Datos de Sesion</button>
+  </div>
+</ng-template>
+
+
+

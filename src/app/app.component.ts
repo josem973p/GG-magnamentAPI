@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
 //import * as $ from "jquery";
 declare var $: any;
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -127,7 +128,81 @@ declare var $: any;
     padding: 10px;
     font-size:35px;
   }
+
+  /*------------------------------------------------------- */
+  .form-modal{
+    width:100%;
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,19rem) ;
+  grid-gap: 0.6rem;
+  justify-content: center;
+  }
+  .form-modal div{
+  width: 300px;
+  }
+  .form-modal div label{
+  font-size: 13px;
+  width: 80px !important;
+  color: #007bff;
+  font-weight: bold;
+  margin-bottom: 10px;
+  }
+  
+  .form-modal input{
+  padding: 2px;
+  background-color: rgb(216, 215, 215);
+  margin-left: 10px;
+  border: 0;
+  width: 200px!important;
+  
+  }
+  
+  .title-container{
+    display:flex;
+    justify-content:space-between ;
+  }
+  .title-container button{
+    border: 0;
+    background-color:#ff4759;
+    height:30px;
+    width:30px;
+    border-radius:8px;
+    margin: 10px;
+  }
+  
+  .modal-content {
+    display:flex;
+    align-items: center;
+    background-color:#f0f0f0;
+   
+  }
+  .modal-dialog{
+  min-width: 500px;
+  max-width: 1300px;
+  background-color: #f8f9fa;
+  
+  }
+  .update-data-container{
+  background-color: #f8f9fa;
+  width:95%
+  }
+  .update-data-botones{
+    display: flex;
+    justify-content: space-between;
+  }
+  .update-data-button-container{
+    
+        width: 300px;
+        
+        display: flex;
+        align-items: center;
+        height: 80px;
+    
+  }
+  
     `
+  
   ]
 })
 export class AppComponent {
@@ -155,9 +230,9 @@ export class AppComponent {
     password:''
   };
 
-  constructor(  ) { }
+  constructor( private modalService: NgbModal ) { }
 
-  
+  @ViewChild('content') someInput!: ElementRef ;
  
 
 
@@ -168,11 +243,13 @@ export class AppComponent {
 
   ngOnInit(): void {
 
+   // this.openLg(this.someInput);
     this.abrir();
+    
   }
   ngAfterViewInit(): void {
    
-
+    this.openLg(this.someInput);
 
     // this.dtTrigger.next();
 
@@ -183,12 +260,15 @@ export class AppComponent {
     if (this.open = false) {
       $('.nav-bar').toggleClass('abrir');
       $('.main-container').toggleClass('abrir');
+     
 
     } else if (this.open = true) {
       $('.nav-bar').toggleClass('abrir');
       $('.main-container').toggleClass('abrir');
+      
     }
 
+    
   }
   mainPage() {
     location.reload();
@@ -245,6 +325,10 @@ export class AppComponent {
 
     this.url = `http://127.0.0.1:8080`;
   };
+
+  openLg(content:any) {
+    this.modalService.open(content, { size: 'lg' });
+  }
 
 
 }
