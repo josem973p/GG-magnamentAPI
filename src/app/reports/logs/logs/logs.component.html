@@ -12,11 +12,12 @@ Critical Events
   >
     <button
       class="btn btn-primary align-self-center"
-      style="width: 200px"
-      (click)="this.SolveData()"
+      style="width: 150px"
+
+      (click)="this.SolveData(); this.rerender();"
       >
      <!-- (click)="this.agregar()"-->
-      Mandar Peticion
+      Refrescar
      
     </button>
   <div
@@ -41,7 +42,7 @@ Critical Events
                 <thead>
                     <tr class="bg-primary">
                         <th scope="col"  style="width: 70px!important">DATE</th>
-                        <th scope="col" style="width: 60px!important">MESSAGE</th>
+                        <th scope="col" style="width: 77%!important">MESSAGE</th>
 
             
 

@@ -15,7 +15,7 @@
 </head>
 
 
-<div class="sidebar">
+<div class="sidebar" style="height:100%!important;">
   <div class="logo" style="margin: auto">
     <h2
       class="text-light mb-0 p-3 ml-2"
@@ -75,7 +75,7 @@
         
       >
       <i
-      class="icon ion-md-options"
+      class="icon ion-md-play"
       style="
       width: 15px;
       height: 15px;
@@ -109,13 +109,14 @@
         style="font-size:16px; font-family: 'Poppins-Regular'!important;"
       >
       <i
-      class="icon ion-md-checkmark"
+      class="icon ion-md-hand"
       style="
       width: 15px;
       height: 15px;
       display: inline-block;
       margin-bottom: 5px;
       margin-left: 50px;
+      margin-right: 6px;
     "
       ></i>
       <i style="font-weight: 0;">Stop Deployment</i>
@@ -124,7 +125,7 @@
     </ul>
     <h3 class="d-block text-light p-2 border-0" style="font-size:20px!important;">
       <i
-        class="icon ion-md-clipboard"
+      class="icon ion-md-send"
         style="
           width: 15px;
           height: 22px;
@@ -162,7 +163,7 @@
         
       >
       <i
-      class="icon ion-md-options"
+      class="icon ion-md-settings"
       style="
       width: 15px;
       height: 15px;
@@ -233,16 +234,17 @@
         style="font-size:16px; font-family: 'Poppins-Regular'!important;"
       >
       <i
-      class="icon ion-md-checkmark"
+      class="icon ion-md-paper"
       style="
       width: 15px;
       height: 15px;
       display: inline-block;
       margin-bottom: 5px;
       margin-left: 50px;
+      margin-right:6px;
     "
       ></i>
-      <i style="font-weight: 0;">Detalles del extracto</i>
+      <i style="font-weight: 0; margin-right:5px">Detalles del extracto</i>
         
       </li>
       <!-- <li class="ml-5 mb-1"
@@ -285,7 +287,7 @@
 
     <h3 class="d-block text-light p-2 border-0" style="font-size:20px!important;">
       <i
-        class="icon ion-md-clipboard"
+      class="icon ion-md-swap"
         style="
           width: 15px;
           height: 22px;
@@ -324,7 +326,7 @@
         
       >
       <i
-      class="icon ion-md-options"
+      class="icon ion-md-settings"
       style="
       width: 15px;
       height: 15px;
@@ -393,13 +395,14 @@
         style="font-size:16px; font-family: 'Poppins-Regular'!important;"
       >
       <i
-      class="icon ion-md-checkmark"
+      class="icon ion-md-paper"
       style="
       width: 15px;
       height: 15px;
       display: inline-block;
       margin-bottom: 5px;
       margin-left: 50px;
+      margin-right:6px;
     "
       ></i>
       <i style="font-weight: 0;">Detalles de la replica</i>
@@ -444,7 +447,7 @@
 
     <h3 class="d-block text-light p-1 border-0 mb-1" style="font-size:20px!important;">
       <i
-        class="icon ion-md-clipboard"
+      class="icon ion-md-podium"
         style="
           width: 15px;
           height: 22px;
@@ -676,7 +679,7 @@
       </div>
       
     </section>
-    <div style="display:flex; justify-content:start;  boder-radius:5px; margin-left: 20px;">
+    <div style="display:flex; justify-content:start;  boder-radius:5px; padding-left: 20px; background-color: white;" >
       
       
       <div  *ngIf="start"  >
@@ -691,7 +694,7 @@
       <div  *ngIf="listReports"  >
         <app-list-reports></app-list-reports>
       </div>
-      <div  *ngIf="retrieveExtract"  >
+      <div  *ngIf="retrieveExtract"  style="background-color: white;" >
         <app-retrieve-extract></app-retrieve-extract>
       </div>
       <div  *ngIf="extractStatus"  >
@@ -703,13 +706,13 @@
       <div  *ngIf="replicatListsReports"  >
         <app-replicat-list-reports></app-replicat-list-reports>
       </div>
-      <div  *ngIf="retrieveReplicat"  >
+      <div  *ngIf="retrieveReplicat"   style="background-color: white;" >
         <app-retrieve-replicat></app-retrieve-replicat>
       </div>
       <div  *ngIf="replicatStatus"  >
         <app-replicat-status></app-replicat-status>
       </div>
-      <div  *ngIf="logs"  >
+      <div  *ngIf="logs"  style="background-color: white;" >
         <app-logs></app-logs>
       </div>
       <div  *ngIf="messages"  >
@@ -719,7 +722,7 @@
         <app-task-manager></app-task-manager>
       </div>
 
-      <div  *ngIf="extracts" >
+      <div  *ngIf="extracts"  style="background-color: white; width:95%">
         <br>
         <app-process style="display: flex; justify-content: center"></app-process>
       </div>

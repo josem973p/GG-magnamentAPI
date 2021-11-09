@@ -1,56 +1,82 @@
 <br>
 <br>
-<div class="show-data-container" style="width:95%; max: width 1500px; display: flex; justify-content: center; width:auto">
-    <div class="show-data-table">
-
-        <div>
-
-            <table id="example" datatable  [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table "
-                style="background-color: #f8f9fa; table-layout: fixed;">
-                <thead>
-                    <tr class="bg-primary">
-                        <th style="width: 70px!important"> 
-                            <button type="button"class="waves-effect btn start" data-toggle="modal"
-                                data-target=".bd-example-modal-lg" style="background-color:#00dd1e; width: 35px; height: 35px; margin: 0; padding: 0;"><img src="../assets/imagenes/play.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button> 
-                                <button class="waves-effect btn stop" style="background-color:#ff0019; width: 35px; height: 35px; margin: 0; padding: 0;">
-                                    <img src="../assets/imagenes/stop.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button>
-                                    <button class="waves-effect btn info" style="background-color:#0099ff; width: 35px; height: 35px; margin: 0; padding: 0;"> <img src="../assets/imagenes/stop.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button> 
-                                </th>
-                        <th scope="col"  style="width: 70px!important">NAME</th>
-                        <th scope="col" style="width: 60px!important">STATUS</th>
-                        <th scope="col"  style="width: 150px!important">LAST_STARTED</th>
-                        <th scope="col "style="width: 40px!important">LAG</th>
-                        <th scope="col"  style="width: 115px!important">SINCE_LAG_REPORTED</th>
-                        <th scope="col"  style="width: 70px!important">POSITION</th>
-                       
-                      
 
 
-                    </tr>
+<div style=" display:block ;">
 
-                </thead>
-                <tbody>
+  <div style=" display:block ;">
 
-                    <tr *ngFor="let x of objeto2">
-
-                        <td></td>
-                        <td>{{x.name}}</td>
-                        <td>{{x.status}}</td>
-                        <td>{{x.lastStarted}}</td>
-                        <td>{{x.lag}}</td>
-                        <td>{{x.sinceLagReported}}</td>
-                        <td>{{x.position}}</td>
+    <button
+  class="btn btn-primary align-self-center"
+  style="width: 150px; "
+  
+  (click)="this.SolveData(); this.rerender();"
+  >
+  <!-- (click)="this.agregar()"-->
+  Refrescar
+  
+  </button>
+  
+  </div>
+  
+  <br>
+  
+  <div class="show-data-container" style="width:95%; max: width 1500px; display: flex; justify-content: center; width:auto">
+      <div class="show-data-table">
+  
+          <div>
+  
+              <table id="example" datatable  [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table "
+                  style="background-color: #f8f9fa; table-layout: fixed;">
+                  <thead>
+                      <tr class="bg-primary">
+                          <th style="width: 70px!important"> 
+                              <button type="button"class="waves-effect btn start" data-toggle="modal"
+                                  data-target=".bd-example-modal-lg" style="background-color:#00dd1e; width: 35px; height: 35px; margin: 0; padding: 0;"><img src="../assets/imagenes/play.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button> 
+                                  <button class="waves-effect btn stop" style="background-color:#ff0019; width: 35px; height: 35px; margin: 0; padding: 0;">
+                                      <img src="../assets/imagenes/stop.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button>
+                                      <button class="waves-effect btn info" style="background-color:#0099ff; width: 35px; height: 35px; margin: 0; padding: 0;"> <img src="../assets/imagenes/informacion.png"  style="width: 25px; height: 25px; display: inline-block;  margin:0; padding: 0;"></button> 
+                                  </th>
+                          <th scope="col"  style="width: 70px!important">NAME</th>
+                          <th scope="col" style="width: 60px!important">STATUS</th>
+                          <th scope="col"  style="width: 150px!important">LAST_STARTED</th>
+                          <th scope="col "style="width: 40px!important">LAG</th>
+                          <th scope="col"  style="width: 115px!important">SINCE_LAG_REPORTED</th>
+                          <th scope="col"  style="width: 70px!important">POSITION</th>
+                         
                         
-                        
-                 
+  
+  
+                      </tr>
+  
+                  </thead>
+                  <tbody>
+  
+                      <tr *ngFor="let x of objeto2">
+  
+                          <td></td>
+                          <td>{{x.name}}</td>
+                          <td>{{x.status}}</td>
+                          <td>{{x.lastStarted}}</td>
+                          <td>{{x.lag}}</td>
+                          <td>{{x.sinceLagReported}}</td>
+                          <td>{{x.position}}</td>
+                          
+                          
+                   
+  
+                      </tr>
+                  </tbody>
+              </table>
+  
+          </div>
+  
+      </div>
+  </div>
+  
+  
 
-                    </tr>
-                </tbody>
-            </table>
 
-        </div>
-
-    </div>
 </div>
 
 

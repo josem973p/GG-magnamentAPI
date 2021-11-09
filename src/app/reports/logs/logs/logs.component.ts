@@ -126,36 +126,38 @@ export class LogsComponent implements  OnInit, AfterViewInit, OnDestroy {
   rerender(): void {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
 
-      this.fetchData('http://127.0.0.1:8080/extract/data').then(data => {
+      this.fetchData('http://127.0.0.1:8080/logs/criticalEvents').then(data => {
   
-      this.objeto2 = data
-      console.log(this.objeto2)
-      
-
-      this.dtOptions = {
-        pagingType: 'full_numbers',
-        pageLength: 5,
-        columns: [
-        
-          {
-            title: 'DATE',
-            data: 'DATE',
-          },
-          {
-            title: 'MESSAGE',
-            data: 'MESSAGE',
-          }
-        ]
-      };
-
-      dtInstance.destroy();
-
-      this.dtTrigger.next();
+        this.objeto2 = data
+        console.log(this.objeto2)
+   
 
 
-
-    });
-
+        this.dtOptions = {
+          pagingType: 'full_numbers',
+          pageLength: 5,
+          columns: [
+          
+            {
+              title: 'DATE',
+              data: 'DATE',
+            },
+            {
+              title: 'MESSAGE',
+              data: 'MESSAGE',
+            }
+          ]
+        };
+  
+        dtInstance.destroy();
+  
+        this.dtTrigger.next();
+  
+  
+  
+  
+      });
+  
    
     });
   }
